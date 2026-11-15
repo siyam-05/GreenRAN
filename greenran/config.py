@@ -40,7 +40,7 @@ class Config:
     # ---- network ----
     n_cells: int = 12                # small cells under one macro cell
     small_capacity: float = 1.0      # traffic a small cell can carry (this is the unit)
-    macro_capacity: float = 4.0      # macro capacity, in small-cell units
+    macro_capacity: float = 3.0      # macro capacity, in small-cell units
     macro: BSPower = MACRO
     micro: BSPower = MICRO
     min_dwell: int = 4               # a cell must hold its on/off state >= 1 hour (no ping-pong)

@@ -167,7 +167,10 @@ generated from [`results/results.json`](results/results.json).
   30-minute hold and moved to 1 hour; both are reported.
 - Only vanilla DQN was tried. Double DQN, a centralised critic or a
   forecasting model in front of the rule may do better.
-
+- The macro cell size matters. In a short demo run with macro capacity 3
+  instead of 4, the load-aware rule saved 27.41 % instead of 31.24 %, and the
+  bound fell from 33.79 % to 29.49 %. A smaller macro cell has less room to
+  take over traffic, so fewer cells can sleep.
 ## Run it
 
 ```bash
