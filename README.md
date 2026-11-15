@@ -177,8 +177,8 @@ python scripts/demo.py                 # trains one small agent, under a minute
 python scripts/run_experiments.py      # everything above, about 25 min on 2 cores
 python scripts/make_figures.py         # figures/ and results/summary.md
 ```
-
-Tested with Python 3.13, NumPy 2.5 and Matplotlib 3.11. Also run on Windows 11 with Python 3.12, NumPy 2.1 and Matplotlib 3.9.Runs are seeded, so
+Tested with Python 3.13, NumPy 2.5 and Matplotlib 3.11. Also run on Windows 11
+with Python 3.14.5, NumPy 2.4.6 and Matplotlib 3.11.2. Runs are seeded, so
 the numbers should come out the same on the same versions.
 
 ## Files
