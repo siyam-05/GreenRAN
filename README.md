@@ -165,12 +165,17 @@ generated from [`results/results.json`](results/results.json).
 - The hold time, the loss, the learning-rate schedule and the input features
   were chosen while looking at validation days. Development started with a
   30-minute hold and moved to 1 hour; both are reported.
-- Only vanilla DQN was tried. Double DQN, a centralised critic or a
-  forecasting model in front of the rule may do better.
+- Double DQN is now available as an option (`train_dqn(..., double=True)`).
+  In one short demo run (20 epochs, 1 seed) it saved 29.71 % against 31.05 %
+  for plain DQN, with more unserved traffic (0.19 % against 0.08 %). One short
+  run is not a fair comparison, and the full results above use plain DQN only.
+  A centralised critic or a forecasting model in front of the rule may still
+  do better.
 - The macro cell size matters. In a short demo run with macro capacity 3
   instead of 4, the load-aware rule saved 27.41 % instead of 31.24 %, and the
   bound fell from 33.79 % to 29.49 %. A smaller macro cell has less room to
   take over traffic, so fewer cells can sleep.
+
 ## Run it
 
 ```bash

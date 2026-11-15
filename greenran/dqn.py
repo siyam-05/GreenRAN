@@ -157,6 +157,7 @@ class DQNPolicy:
 def train_dqn(cfg: Config, seed, onehot=None, epochs=60, days_per_epoch=14,
               hidden=(64, 64), gamma=0.95, lr=5e-4, batch=128, tau=0.01,
               eps_end=0.02, eps_decay_frac=0.5, buffer_size=200_000, grad_clip=10.0,
+                            double=False,
               val=None, eval_every=4, log=None):
     """Train one agent. Every epoch uses freshly simulated days.
 
@@ -197,7 +198,12 @@ def train_dqn(cfg: Config, seed, onehot=None, epochs=60, days_per_epoch=14,
 
             if buf.size >= 5_000:
                 bs, ba, br, bs2 = buf.sample(rng, batch)
-                y = br + gamma * target.forward(bs2).max(axis=1)      # Bellman target
+                if double:
+                    best = net.forward(bs2).argmax(axis=1)            # the main network picks the action
+                    q_next = target.forward(bs2)[rows, best]          # the target network scores it
+                else:
+                    q_next = target.forward(bs2).max(axis=1)
+                y = br + gamma * q_next                               # Bellman target
                 q = net.forward(bs, keep=True)
                 td = q[rows, ba] - y
                 d_out = np.zeros_like(q)
